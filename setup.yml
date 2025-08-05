@@ -1,0 +1,26 @@
+- name: Setup Web dan Database Server
+hosts: target
+become: yes
+tasks:
+    - name: Update semua paket
+    yum:
+    name: '*'
+    state: latest
+    - name: Install Apache (httpd)
+    yum:
+    name: httpd
+    state: present
+    - name: Start Apache
+    service:
+    name: httpd
+    state: started
+    enabled: yes
+    - name: Install MariaDB
+    yum:
+    name: mariadb-server
+    state: present
+    - name: Start MariaDB
+    service:
+    name: mariadb
+    state: started
+    enabled: yes
